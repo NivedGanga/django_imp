@@ -1,0 +1,25 @@
+services:
+  image_processing:
+    build:
+      context: .
+    container_name: maya-image_processing
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    networks:
+      - milvus_network # Connect to the external Milvus network
+      - kafka_network # Connect to the external Kafka network
+
+networks:
+  milvus_network:
+    external: true
+  kafka_network:
+    external: true
+
+volumes:
+  ip_data:
+   

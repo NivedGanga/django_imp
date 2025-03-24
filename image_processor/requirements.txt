@@ -1,0 +1,15 @@
+pymysql
+django
+djangorestframework
+confluent-kafka
+python-dotenv
+cryptography
+pymilvus
+numpy
+requests
+pillow
+dlib
+aiohttp
+networkx 
+scipy
+chinese_whispers 
