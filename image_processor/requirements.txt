@@ -12,4 +12,5 @@ dlib
 aiohttp
 networkx 
 scipy
-chinese_whispers 
+chinese_whispers
+scikit-learn

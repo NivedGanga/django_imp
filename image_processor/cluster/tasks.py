@@ -57,7 +57,7 @@ def cluster_embeddings_chinese_whispers(specific_embedding,event_id):
                 specific_cluster = clusters[i]
                 break
     except Exception as e:
-        print(str(e))
+        print(str())
 
 
     if specific_cluster is None:
