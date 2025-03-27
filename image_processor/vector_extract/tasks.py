@@ -11,6 +11,6 @@ async def vectorizeImage(message_list):
             for vector in vecotrs:
                 addVectorsToMilvus(item['fileid'],vector,item['eventid'])
             await FileStore.objects.filter(fileid=item['fileid']).aupdate(isVectorized=1)
-        except Exception as e:
+        except Exception as e: 
             print(f"Error processing image: {e}")
     print("Processing image...")

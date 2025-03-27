@@ -7,7 +7,7 @@ from PIL import Image
 from io import BytesIO
 import tempfile
 
-def get_face_embeddings(image_url):
+async def get_face_embeddings(image_url):
     start = time.time()
     # Load models
     predictor_path = './vector_extract/shape_predictor_5_face_landmarks.dat'

@@ -41,7 +41,6 @@ def start_kafka_consumer():
     finally:
         consumer.close()
 
-
 async def process_message(message):
     from vector_extract.tasks import vectorizeImage
     try:

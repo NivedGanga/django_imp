@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('milvusdatas/', milvus.get_datas),
     path('deletecollection', milvus.delete_col),
-    path('upload',cluster.process_image),
+    # path('upload',cluster.process_image),
 ]
