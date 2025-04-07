@@ -9,12 +9,9 @@ from .tasks import cluster_embeddings_chinese_whispers
 @api_view(['POST'])
 @parser_classes([MultiPartParser])
 def process_image(request):
-    print("hellosdfhg")
+    print("Debugging request data:")
     print(f"Request method: {request.method}")
     print(f"Request FILES: {request.FILES}")
-    for filename, file in request.FILES.items():
-        print(filename)
-    print(f"Request POST: {request.POST}")
     
     if "image" not in request.FILES or "event_id" not in request.POST:
         return Response({"error": "Image and event_id are required"}, status=400)
@@ -25,7 +22,7 @@ def process_image(request):
     try:
         # Use await with the async version of the function
         num_faces = get_number_of_faces(image)
-        print(num_faces)
+        print(f"Number of faces detected: {num_faces}")
         if num_faces is None:
             return Response({"error": "Error processing image"}, status=500)
         elif num_faces > 1 or num_faces == 0:
@@ -33,7 +30,7 @@ def process_image(request):
         else:
             # Use await with the async version of the function
             v = get_face_embeddings_sync(image)
-            d = cluster_embeddings_chinese_whispers(v,event_id)
+            d = cluster_embeddings_chinese_whispers(v, event_id)
             return Response(d)
     except Exception as e:
         print(f"Error: {e}")

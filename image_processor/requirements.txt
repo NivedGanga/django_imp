@@ -15,3 +15,5 @@ scipy
 chinese_whispers
 scikit-learn
 gradio_client<0.10.0
+cloudinary
+django-cors-headers

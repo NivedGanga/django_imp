@@ -33,7 +33,7 @@ def start_kafka_consumer():
             asyncio.run(process_message(message))
 
             # Send acknowledgement
-           #send_acknowledgement(msg.value())
+            send_acknowledgement(msg.value())
 
     except KeyboardInterrupt:
         print("Consumer interrupted.")
@@ -47,7 +47,6 @@ async def process_message(message):
         message_list = json.loads(message)
         await vectorizeImage(message_list)
         print(f"message processed")
-        send_acknowledgement('message')
     except json.JSONDecodeError as e:
         print(f"Failed to decode message: {e}")
 

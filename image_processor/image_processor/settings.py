@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from pymilvus import connections
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,21 +41,24 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'vector_extract',
     'milvus_integration',
+    'corsheaders',
+    'image_enhancement',
     'kafka_integration.apps.KafkaIntegrationConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware'
 ]
 
 ROOT_URLCONF = 'image_processor.urls'
-
+CORS_ALLOW_ALL_ORIGINS = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -100,6 +106,12 @@ DATABASES = {
         'PORT': os.getenv('MILVUS_PORT', '19530'),
     },
 }
+
+cloudinary.config(
+    cloud_name=os.getenv('CLOUDINARY_NAME'),  # Replace with your Cloudinary cloud name
+    api_key=os.getenv('CLOUDINARY_API_KEY'),       # Replace with your Cloudinary API key
+    api_secret=os.getenv('CLOUDINARY_API_SECRET'), # Replace with your Cloudinary API secret
+)
 
 # Kafka settings
 KAFKA_CONFIG = {
